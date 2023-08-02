@@ -1,10 +1,11 @@
 import { getUploads } from "@/services/explore";
 import { FcSms } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
-import { BsQuestionCircleFill } from "react-icons/bs";
 import Link from "next/link";
+import moment from "moment/moment";
+import { getIcons } from "@/services/colors";
 
-const UploadsPage = async ({children}) => {
+const UploadsPage = async () => {
   const data = await getUploads();
 
   return (
@@ -12,31 +13,42 @@ const UploadsPage = async ({children}) => {
       {data?.map((item) => (
         <Link
           href={`/explore/${item._id}`}
-          key={item.id}
+          key={item._id}
           className="bg-white w-full border cursor-pointer hover:bg-neutral-50 transition border-neutral-400/50 h-full flex flex-col rounded-xl overflow-hidden p-4 gap-3"
         >
-          <div className="flex gap-2 items-baseline">
-            <BsQuestionCircleFill className="text-blue-400" />
+          <div className="flex gap-2 items-center">
+            <span className="font-bold flex items-center gap-1">[{getIcons(item.type)}]</span>
             <h4>{item.title}</h4>
           </div>
-          <span className="text-sm text-neutral-500">
-            by <strong>Anonymous</strong>
+          <span className="text-xs text-neutral-500">
+            @<strong className="text-sm">{item.author.username}</strong>
           </span>
           <hr />
           <div className="flex justify-between text-xs items-end text-neutral-500 justify-self-end h-full">
             <div className="flex gap-3 items-center">
               <span className="flex gap-1 items-center">
-                <span>{parseInt("2000").toLocaleString()}</span> <FcSms />
+                <span>
+                  {parseInt(item.comments?.length || 0).toLocaleString()}
+                </span>{" "}
+                <FcSms />
               </span>
               <span className="flex gap-1 items-center">
-                <span>{parseInt("1337").toLocaleString()}</span>
+                <span>
+                  {parseInt(item.likes?.length || 0).toLocaleString()}
+                </span>
                 <FcLike />
               </span>
             </div>
-            <span>27 minutes ago</span>
+            <span>{moment(item.createdAt).startOf("hour").fromNow()}</span>
           </div>
         </Link>
       ))}
+      <Link
+        className="absolute right-5 bottom-5 text-6xl"
+        href="http://localhost:3000/explore/new"
+      >
+        +
+      </Link>
     </section>
   );
 }

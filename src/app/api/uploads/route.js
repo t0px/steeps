@@ -6,7 +6,7 @@ export const GET = async () => {
   try {
     await connectDB();
 
-    const uploads = await Upload.find({});
+    const uploads = await Upload.find({}).populate("author");
     if (uploads.length === 0) {
       return new NextResponse("Couldn't find data.", { status: 500 });
     }
@@ -20,14 +20,15 @@ export const GET = async () => {
 
 export const POST = async (req) => {
   const body = await req.json();
-  const newUpload = new Upload(body);
+  const new_upload = new Upload(body);
 
   try {
     await connectDB();
-    await newUpload.save();
+    await new_upload.save();
+    console.log("Uploaded:", new_upload);
     return new NextResponse("New upload has been saved to the database.", { status: 201 });
   } catch (error) {
-    return new NextResponse("Couldn't connect to the database.", {
+    return new NextResponse(`Error processing your request. ERROR: ${error}`, {
       status: 500,
     });
   }

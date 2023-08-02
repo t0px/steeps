@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <div className="flex text-neutral-800 bg-neutral-100 min-h-screen justify-center">
           <div className='py-12 flex flex-col justify-between w-8/12'>
             <Navbar />
-            <main className='h-full py-24'>{children}</main>
+            <main className='h-full py-16'>{children}</main>
             <Footer />
           </div>
         </div>
