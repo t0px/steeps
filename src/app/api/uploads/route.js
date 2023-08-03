@@ -12,7 +12,7 @@ export const GET = async () => {
     }
     return new NextResponse(JSON.stringify(uploads), { status: 200 });
   } catch (error) {
-    return new NextResponse("Couldn't connect to the database.", {
+    return new NextResponse(`Couldn't connect to the database. ${error}`, {
       status: 500,
     });
   }

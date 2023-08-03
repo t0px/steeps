@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const path = usePathname();
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <nav className="flex justify-between items-center border border-blue-500/25 bg-blue-200 rounded-2xl py-3 px-5">
@@ -41,7 +41,7 @@ const Navbar = () => {
             />
           </>
         ) : (
-          <button>Sign In</button>
+          <Link href='http://localhost:3000/login'>Login</Link>
         )}
       </div>
     </nav>

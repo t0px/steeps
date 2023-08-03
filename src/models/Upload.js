@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import User from "./User";
 
 const Schema = mongoose.Schema;
 
@@ -17,23 +18,7 @@ const Schema = mongoose.Schema;
 //   },
 // }, {timestamps: true});
 
-// const commentSchema = new Schema({
-//   authorId: {
-//     type: String,
-//     required: true,
-//   },
-//   content: {
-//     type: String,
-//     required: true,
-//   },
-//   likes: {
-//     type: Number,
-//     required: true,
-//   },
-//   // replies: {
-//   //   type: [replySchema],
-//   // },
-// }, {timestamps: true});
+
 
 // const likeSchema = new Schema({
 //   authorId: {
@@ -52,12 +37,12 @@ const uploadSchema = new Schema(
       type: String,
     },
     banner: {
-      type: String,
+      type: String, 
       required: true,
     },
     author: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "User",
+      ref: User,
       required: true,
     },
     type: {
@@ -65,11 +50,13 @@ const uploadSchema = new Schema(
       required: true,
     },
     // likes: {
-    //   type: [likeSchema]
+    //   type: Array,
+    //   default: [],
     // },
-    // comments: {
-    //   type: [commentSchema]
-    // }
+    // comments: [{
+    //   type:mongoose.SchemaTypes.ObjectId,
+    //   ref: Comment
+    // }],
   },
   { timestamps: true }
 );

@@ -14,7 +14,7 @@ const Form = () => {
     title: "",
     content: "",
     banner: "",
-    author: "64cad3dd62b71f81dd528529",
+    author: "64caf28527b266dc5ba47180",
     type: "question",
     // likes: [],
     // comments: []

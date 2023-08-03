@@ -3,14 +3,15 @@ import { FcSms } from "react-icons/fc";
 import { FcLike } from "react-icons/fc";
 import Link from "next/link";
 import moment from "moment/moment";
-import { getIcons } from "@/services/colors";
+import { getIcons } from "@/services/icons";
 
 const UploadsPage = async () => {
   const data = await getUploads();
 
   return (
     <section className="grid grid-cols-3 gap-8">
-      {data?.map((item) => (
+      
+      {data ? data.map((item) => (
         <Link
           href={`/explore/${item._id}`}
           key={item._id}
@@ -42,7 +43,9 @@ const UploadsPage = async () => {
             <span>{moment(item.createdAt).startOf("hour").fromNow()}</span>
           </div>
         </Link>
-      ))}
+      )) : (
+        <p>No uploads found.</p>
+      )}
       <Link
         className="absolute right-5 bottom-5 text-6xl"
         href="http://localhost:3000/explore/new"
