@@ -6,12 +6,12 @@ import {FaPoll} from 'react-icons/fa'
 export const getIcons = (type) => {
   switch (type) {
     case 'question':
-      return <AiFillQuestionCircle />
+      return <AiFillQuestionCircle className='text-yellow-500'/>
     case 'poll':
-      return <FaPoll />;
+      return <FaPoll className="text-purple-500" />;
     case 'help':
-      return <AiFillExclamationCircle />;
+      return <AiFillExclamationCircle className="text-red-500" />;
     case 'discussion':
-      return <BsFillChatSquareDotsFill />;
+      return <BsFillChatSquareDotsFill className="text-green-500" />;
   }
 }

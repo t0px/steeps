@@ -2,6 +2,7 @@ import { getComments, getSingleUpload } from "@/services/explore";
 import { getIcons } from "@/services/icons";
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 
 export const generateMetadata = async ({params}) => {
   const post = await getSingleUpload(params.upload_id)
@@ -16,16 +17,21 @@ const UploadPage = async ({ params }) => {
   const post = await getSingleUpload(params.upload_id)
   const { author } = post;
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden z-50 h-full max-lg:w-10/12 w-4/12 pointer-events-auto">
-      <header className="relative flex justify-center items-center h-80 bg-neutral-700 border-b-8">
-        <span className="text-white text-2xl z-10 absolute top-5 left-5">{getIcons(post.type)}</span>
-        <Image
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          fill
-          className="object-cover"
-          src={post.banner}
-          alt={post.title}
-        />
+    <div className="bg-white rounded-xl shadow-2xl overflow-hidden z-50 h-full max-lg:w-10/12 w-4/12 pointer-events-auto">
+      <header
+        className={`relative flex justify-center items-center h-80`}
+        style={{ backgroundColor: post.banner.avg_color }}
+      >
+          <Image
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            fill
+            className="object-cover"
+            src={post.banner.src}
+            alt={post.banner.alt}
+          />
+        <h2 className="capitalize px-2 py-1 bg-gray-200 text-xs w-fit absolute z-1 left-4 bottom-4 opacity-70 rounded-full">
+          {post.type}
+        </h2>
         <h1 className="text-white post-header drop-shadow-lg max-w-sm text-center font-bold text-4xl z-1 absolute">
           {post.title}
         </h1>

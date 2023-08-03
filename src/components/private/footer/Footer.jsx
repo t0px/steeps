@@ -1,6 +1,6 @@
 const Footer = () => {
   return ( 
-    <footer>Footer</footer>
+    <footer className="text-center">steeps 2023 &copy;</footer>
    );
 }
 

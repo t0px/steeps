@@ -22,6 +22,7 @@ const LoginPage = () => {
         value="Login"
         className="py-2 px-4 border cursor-pointer bg-blue-600 text-white rounded-lg"
       />
+      <span className="hidden text-green-500 text-red-500 text-purple-500 text-yellow-500"></span>
     </form>
   );
 }

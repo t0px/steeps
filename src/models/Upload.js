@@ -37,7 +37,7 @@ const uploadSchema = new Schema(
       type: String,
     },
     banner: {
-      type: String, 
+      type: Object, 
       required: true,
     },
     author: {

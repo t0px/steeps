@@ -1,9 +1,7 @@
-import { redirect } from "next/navigation";
-
 export const getUploads = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/uploads", {
-      next: { revalidate: 10 },
+      cache: 'no-store',
     });
 
     if (!res.ok) {
