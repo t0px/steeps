@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'steeps',
-  description: 'Ask anyone, anything.',
+  description: 'Talk to anyone, about anything.',
   icons: {
     icon: '/favicon.ico'
   }
@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-          <div className="flex text-neutral-800 bg-neutral-100 min-h-screen justify-center">
+          <div className="flex text-neutral-800 bg-neutral-100 min-h-screen justify-center overflow-hidden">
             <div className="py-12 flex flex-col justify-between w-7/12">
               <Navbar />
               <main className="h-full py-16">{children}</main>

@@ -1,5 +1,6 @@
 import Upload from "@/models/Upload";
 import { connectDB } from "@/utils/connectDB";
+import { redirect } from "next/dist/server/api-utils";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
@@ -22,7 +23,7 @@ export const GET = async () => {
 export const DELETE = async () => {
   try {
     await connectDB();
-    const uploads = await Upload.find({}).deleteMany();
+    const uploads = await Upload.find({"title": /lana/i}).deleteMany();
     return new NextResponse(
       "All uploads have been deleted from the database.",
       {
@@ -39,7 +40,7 @@ export const DELETE = async () => {
   }
 };
 
-export const POST = async (req) => {
+export const POST = async (req, res) => {
   const body = await req.json();
   const new_upload = new Upload(body);
 
@@ -47,9 +48,8 @@ export const POST = async (req) => {
     await connectDB();
     await new_upload.save();
     console.log("Uploaded:", new_upload);
-    return new NextResponse("New upload has been saved to the database.", {
-      status: 201,
-    });
+    return new NextResponse(JSON.stringify(new_upload), {status: 200});
+
   } catch (error) {
     return new NextResponse(`Error processing your request. ERROR: ${error}`, {
       status: 500,

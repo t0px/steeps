@@ -9,7 +9,7 @@ const Backdrop = ({ children }) => {
 
   const handleClick = (e) => {
     if (e.target === backdropRef.current) {
-      router.back();
+      router.push('/explore');
     }
   };
 

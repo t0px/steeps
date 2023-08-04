@@ -1,5 +1,4 @@
-import { getComments, getSingleUpload } from "@/services/explore";
-import { getIcons } from "@/services/icons";
+import {  getSingleUpload } from "@/services/api/uploads/gets";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +16,7 @@ const UploadPage = async ({ params }) => {
   const post = await getSingleUpload(params.upload_id)
   const { author } = post;
   return (
-    <div className="bg-white rounded-xl shadow-2xl overflow-hidden z-50 h-full max-lg:w-10/12 w-4/12 pointer-events-auto">
+    <div className="bg-white rounded-xl shadow-2xl overflow-hidden z-50 h-full max-lg:w-full w-4/12 pointer-events-auto">
       <header
         className={`relative flex justify-center items-center h-80`}
         style={{ backgroundColor: post.banner.avg_color }}
