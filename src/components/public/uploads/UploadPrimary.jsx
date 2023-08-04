@@ -10,13 +10,13 @@ const UploadPrimary = ({ item }) => {
     <Link
       href={`/explore/${item._id}`}
       key={item._id}
-      className="bg-white w-full border cursor-pointer relative hover:bg-neutral-50 transition border-neutral-400/50 h-full flex flex-col rounded-xl p-4 gap-3"
+      className="bg-white w-full shadow-lg border cursor-pointer relative hover:bg-neutral-50 transition border-neutral-400/50 h-full flex flex-col rounded-md p-4 gap-3"
     >
       <span className="absolute -top-2 text-2xl -left-2">
         {getIcons(item.type)}
       </span>
       <div className="flex gap-2 items-center">
-        <h4>{item.title}</h4>
+        <h3 className="font-medium">{item.title}</h3>
       </div>
       <div className="flex gap-2 items-center">
         <Image

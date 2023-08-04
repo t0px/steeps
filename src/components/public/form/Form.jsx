@@ -29,7 +29,7 @@ const Form = () => {
   return (
     <form
       onSubmit={(e) => handleSubmit(formData, e)}
-      className={`flex flex-col py-6 px-10 gap-4 bg-white rounded-xl shadow-lg overflow-hidden z-50 h-3/5 max-lg:w-10/12 w-4/12 pointer-events-auto`}
+      className={`flex flex-col py-6 px-10 gap-4 bg-white rounded-md shadow-lg overflow-hidden z-50 h-3/5 max-lg:w-10/12 w-4/12 pointer-events-auto`}
     >
       {!isContinued ? (
         <ContentSection

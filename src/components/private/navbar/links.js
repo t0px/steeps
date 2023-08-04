@@ -20,9 +20,4 @@ export const links = [
     href: "/popular",
     icon: <BsStars />,
   },
-  {
-    title: "Profile",
-    href: "/profile",
-    icon: <FaUser />,
-  },
 ];

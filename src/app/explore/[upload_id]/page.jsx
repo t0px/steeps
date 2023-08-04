@@ -16,18 +16,18 @@ const UploadPage = async ({ params }) => {
   const post = await getSingleUpload(params.upload_id)
   const { author } = post;
   return (
-    <div className="bg-white rounded-xl shadow-2xl overflow-hidden z-50 h-full max-lg:w-full w-4/12 pointer-events-auto">
+    <div className="bg-white rounded-md shadow-2xl z-50 max-lg:w-full min-h-full overflow-hidden w-4/12 pointer-events-auto">
       <header
         className={`relative flex justify-center items-center h-80`}
         style={{ backgroundColor: post.banner.avg_color }}
       >
-          <Image
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            fill
-            className="object-cover"
-            src={post.banner.src}
-            alt={post.banner.alt}
-          />
+        <Image
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          fill
+          className="object-cover"
+          src={post.banner.src}
+          alt={post.banner.alt}
+        />
         <h2 className="capitalize px-2 py-1 bg-gray-200 text-xs w-fit absolute z-1 left-4 bottom-4 opacity-70 rounded-full">
           {post.type}
         </h2>
@@ -36,7 +36,9 @@ const UploadPage = async ({ params }) => {
         </h1>
       </header>
       <main className="flex flex-col gap-6 p-5">
-        <p>{post?.content}</p>
+        <p className="leading-relaxed whitespace-pre-wrap">
+          {post?.content.replace(" ", "\u00A0")}
+        </p>
         <div className="flex gap-3 self-end text-sm text-neutral-500">
           <div className="flex flex-col items-end gap-1 text-end">
             <div className="flex items-end gap-2">

@@ -11,7 +11,7 @@ const Navbar = () => {
   const isLoggedIn = false;
 
   return (
-    <nav className="flex justify-between items-center border border-neutral-500/25 text-white bg-neutral-800 rounded-2xl py-3 px-5">
+    <nav className="flex justify-between items-center shadow-lg border border-neutral-500/25 text-white bg-neutral-800 rounded-2xl py-3 px-5">
       <div className="w-2/12">
         <Image src="/favicon.png" width={35} height={35} alt="steeps Logo" />
       </div>

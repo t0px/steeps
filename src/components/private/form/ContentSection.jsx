@@ -9,10 +9,15 @@ const ContentSection = ({formData, setFormData, setIsContinued}) => {
           onChange={(e) => setFormData({ ...formData, title: e.target.value })}
           type="text"
           placeholder="Title"
-          className="text-lg resize-none w-full outline-none"
+          className="text-lg resize-none w-full outline-none border-none"
         />
         <div className="flex gap-2 items-center">
-          <select name="" id="" className="w-fit text-end outline-none border-l" onChange={(e) => setFormData({...formData, type: e.target.value})}>
+          <select
+            name=""
+            id=""
+            className="w-fit text-end border-none outline-none focus:outline-none"
+            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+          >
             <option value="question" className="w-fit">
               Question
             </option>
@@ -38,7 +43,7 @@ const ContentSection = ({formData, setFormData, setIsContinued}) => {
         value={formData.content}
         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
         placeholder="Additional content (optional)"
-        className="resize-none w-full h-full outline-none"
+        className="border-none resize-none w-full h-full outline-none"
         rows="10"
       ></textarea>
       <button

@@ -26,7 +26,7 @@ const UploadsPage = async () => {
   );
 
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex flex-col gap-16">
       {data ? (
         <>
           <Trending data={trending_data} />
