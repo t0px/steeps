@@ -6,8 +6,8 @@ import moment from "moment/moment";
 import { getIcons } from "@/services/icons";
 import Image from "next/image";
 import { HiOutlinePlus } from "react-icons/hi";
-import Recent from "@/components/private/explore/Recent";
-import Trending from "@/components/private/explore/Trending";
+import Recent from "@/components/private/uploads/Recent";
+import Trending from "@/components/private/uploads/Trending";
 
 export const metadata = {
   title: "Explore - steeps",
@@ -15,6 +15,8 @@ export const metadata = {
 };
 
 const UploadsPage = async () => {
+
+  //testing filtering... with data
   const data = await getUploads();
   const recent_data = data.filter((item) =>
     !item.title.toLowerCase().includes("dogs")
