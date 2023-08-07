@@ -1,10 +1,15 @@
+import PollView from "@/components/private/uploads/upload/PollView";
 import {  getSingleUpload } from "@/services/api/uploads/gets";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({params}) => {
   const post = await getSingleUpload(params.upload_id)
+  if (!post) { 
+    notFound()
+  }
   return {
     title: `${post.title} - steeps`,
     description: post.content
@@ -39,6 +44,7 @@ const UploadPage = async ({ params }) => {
         <p className="leading-relaxed whitespace-pre-wrap">
           {post?.content.replace(" ", "\u00A0")}
         </p>
+        {post.options?.length > 0 ? <PollView post={post} /> : ""}
         <div className="flex gap-3 self-end text-sm text-neutral-500">
           <div className="flex flex-col items-end gap-1 text-end">
             <div className="flex items-end gap-2">
@@ -51,7 +57,16 @@ const UploadPage = async ({ params }) => {
               />
               <span>{author.username}</span>
             </div>
-            <span className="text-xs">{moment(post.createdAt).calendar()}</span>
+            {post.edited === 'true' ? (
+              <span className="text-xs">
+                <span className="font-medium">Edited</span>{" "}
+                {moment(post.updatedAt).calendar().toLowerCase()}
+              </span>
+            ) : (
+              <span className="text-xs">
+                {moment(post.createdAt).calendar()}
+              </span>
+            )}
           </div>
         </div>
         <hr />

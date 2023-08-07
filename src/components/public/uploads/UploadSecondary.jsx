@@ -17,9 +17,7 @@ const UploadSecondary = ({ item }) => {
       </span>
       <div className="w-full h-full rounded-md overflow-hidden relative flex items-center p-4 gap-3">
         <div className="w-4/6 self-start flex flex-col justify-between h-full">
-          <h3 className="h-5/6 font-medium truncate">
-            {item.title}
-          </h3>
+          <h3 className="h-5/6 font-medium truncate">{item.title}</h3>
           <div className="flex text-lg gap-3 self-end absolute bottom-2">
             <span className="flex gap-1 items-center">
               <span>
@@ -34,7 +32,13 @@ const UploadSecondary = ({ item }) => {
           </div>
         </div>
         <div className="w-2/6 absolute -right-3 rotate-12 h-[200px] flex justify-center items-center bg-blue-600">
-          <Image src={item.banner.src} fill className="object-cover" />
+          <Image
+            src={item.banner.src}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            alt={item.title}
+          />
         </div>
       </div>
     </Link>

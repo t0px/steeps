@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 export const POST = async (req, res) => {
   try {
     const body = await req.json();
-    const { search } = body;
+    const { search, page } = body;
     console.log("Request sent:", req)
     const res = await fetch(
-      `https://api.pexels.com/v1/search?query=${search}`,
+      `https://api.pexels.com/v1/search?query=${search}&page=${page}`,
       {
         headers: {
           Authorization: process.env.PEXELS_API_KEY,

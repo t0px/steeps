@@ -10,7 +10,7 @@ const UploadPrimary = ({ item }) => {
     <Link
       href={`/explore/${item._id}`}
       key={item._id}
-      className="bg-white w-full shadow-lg border cursor-pointer relative hover:bg-neutral-50 transition border-neutral-400/50 h-full flex flex-col rounded-md p-4 gap-3"
+      className={`bg-white w-full shadow-lg border cursor-pointer relative hover:bg-neutral-50 transition border-neutral-400/50 h-full flex flex-col rounded-md p-4 gap-3`}
     >
       <span className="absolute -top-2 text-2xl -left-2">
         {getIcons(item.type)}
@@ -25,6 +25,7 @@ const UploadPrimary = ({ item }) => {
           height={30}
           className="object-fit aspect-square rounded-full"
           src={item.author.avatar}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <span className="text-xs text-neutral-500">
           @<strong className="text-sm">{item.author.username}</strong>

@@ -31,14 +31,16 @@ const uploadSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: [true, "Title is required."],
+      minLength: [10, "Title should be at least 10 characters long."],
+      maxLength: [120, "Title should be no more than 120 characters long."]
     },
     content: {
       type: String,
     },
     banner: {
-      type: Object, 
-      required: true,
+      type: Object,
+      required: [true, "Banner is required."],
     },
     author: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -47,6 +49,14 @@ const uploadSchema = new Schema(
     },
     type: {
       type: String,
+      required: [true, "Type is required."],
+    },
+    edited: {
+      type: String,
+      required: true,
+    },
+    options: {
+      type: Array,
       required: true,
     },
     // likes: {

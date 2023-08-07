@@ -1,13 +1,9 @@
 import { getUploads } from "@/services/api/uploads/gets";
-import { BsFillChatDotsFill } from "react-icons/bs";
-import { FcLike } from "react-icons/fc";
 import Link from "next/link";
-import moment from "moment/moment";
-import { getIcons } from "@/services/icons";
-import Image from "next/image";
 import { HiOutlinePlus } from "react-icons/hi";
 import Recent from "@/components/private/uploads/Recent";
 import Trending from "@/components/private/uploads/Trending";
+import { useSession } from "next-auth/react";
 
 export const metadata = {
   title: "Explore - steeps",
@@ -15,22 +11,22 @@ export const metadata = {
 };
 
 const UploadsPage = async () => {
-
   //testing filtering... with data
   const data = await getUploads();
-  const recent_data = data.filter((item) =>
-    !item.title.toLowerCase().includes("dogs")
-  );
-  const trending_data = data.filter((item) =>
-    item.title.toLowerCase().includes("dogs")
-  );
+  const recent_data = data
+    .filter((item) => !item.title.toLowerCase().includes("dog"))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+  const trending_data = data
+    .filter((item) => item.title.toLowerCase().includes("dog"))
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <section className="flex flex-col gap-16">
       {data ? (
         <>
           <Trending data={trending_data} />
-          <Recent data={recent_data} />
+          <Recent data={recent_data} title="Recent" />
         </>
       ) : (
         <div className="flex flex-col gap-2">
@@ -44,13 +40,6 @@ const UploadsPage = async () => {
           </Link>
         </div>
       )}
-      <Link
-        className="ustify-center items-center flex fixed right-10 bottom-10 text-3xl aspect-square bg-blue-200 hover:bg-blue-300 w-fit border rounded-full  transition cursor-pointer
-               border-blue-500/25  p-4 j"
-        href="http://localhost:3000/explore/new"
-      >
-        <HiOutlinePlus />
-      </Link>
     </section>
   );
 };

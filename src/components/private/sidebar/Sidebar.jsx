@@ -7,13 +7,13 @@ import {RxHamburgerMenu} from 'react-icons/rx';
 
 const Sidebar = () => {
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <nav
-      className={`fixed shadow-lg left-0 top-0 flex flex-col z-1 gap-3 border border-neutral-500/25 bottom-0 bg-neutral-800 ${
+      className={`fixed shadow-lg left-0 top-0 flex flex-col gap-3 border-r border-purple-500/25 background-gradient-dark bottom-0 bg-neutral-800 ${
         isSidebarOpen ? "w-60" : "w-20"
-      } text-white p-4 duration-300`}
+      } p-4 duration-300`}
     >
       <RxHamburgerMenu
         className={`${

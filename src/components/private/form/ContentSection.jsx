@@ -1,6 +1,8 @@
-"use client"
+"use client";
 
-const ContentSection = ({formData, setFormData, setIsContinued}) => {
+import Poll from "@/components/public/form/types/Poll";
+
+const ContentSection = ({ formData, setFormData, setIsContinued }) => {
   return (
     <>
       <div className="flex justify-between items-center">
@@ -31,11 +33,14 @@ const ContentSection = ({formData, setFormData, setIsContinued}) => {
               Help
             </option>
           </select>
+          {formData.title.length > 0 ? (
           <span
-            className={`${formData.title.length > 120 ? "text-red-500" : ""}`}
+            className={`${formData.title.length < 10 || formData.title.length > 120 ? "text-red-500" : ""}`}
           >
             {formData.title.length}/120
           </span>
+          ) : ""}
+
         </div>
       </div>
       <hr />
@@ -43,9 +48,13 @@ const ContentSection = ({formData, setFormData, setIsContinued}) => {
         value={formData.content}
         onChange={(e) => setFormData({ ...formData, content: e.target.value })}
         placeholder="Additional content (optional)"
-        className="border-none resize-none w-full h-full outline-none"
+        className={`border-none resize-none ${
+          formData.type !== "poll" ? "h-full" : ""
+        } w-full outline-none`}
         rows="10"
       ></textarea>
+      {formData.type === "poll" ? (<><hr /><Poll formData={formData} setFormData={setFormData} /></>) : ""}
+
       <button
         onClick={() => setIsContinued(true)}
         type="button"
@@ -56,6 +65,6 @@ const ContentSection = ({formData, setFormData, setIsContinued}) => {
       </button>
     </>
   );
-}
- 
+};
+
 export default ContentSection;

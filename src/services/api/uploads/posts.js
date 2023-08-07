@@ -13,12 +13,27 @@ export const saveUpload = async (formData, e) => {
       next: { revalidate: 10 },
     });
 
-    if (!res.ok) {
-      throw new Error("Failed to process response from server.");
-    }
     return res.json();
-
   } catch (error) {
-    throw new Error("Error request. Bad Promise", { status: 500 }, error);
+    return new Error("Couldn't estabilsh connection with the database.", {status: 400});
   }
 };
+
+export const getUploadsByUser = async (user_id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/uploads/user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user_id }),
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data.");
+    }
+    return res.json();
+  } catch (error) {}
+};
+
